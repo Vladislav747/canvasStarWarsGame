@@ -4,6 +4,12 @@ html, body {
 }
 
 canvas {
-    background-color: rgb(11, 21, 56);
-    display: block;
+    width: 800px;
+    height: 500px;
+    border: 1px solid #000;
+    background-color: #d79c50;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
