@@ -6,9 +6,9 @@ canvas.height = 500;
 const keys = [];
 
 const player = {
-	x: 0,
-	y: 0,
-	width: 40, // to be calculated
+	x: 200,
+	y: 200,
+	width: 38, // to be calculated
 	height: 50, // to be calculated
 	frameX: 0,
 	frameY: 0,
@@ -29,7 +29,25 @@ function drawSprite(img, sX, sY, sW,sH, dX, dY, dW, dH){
 function animate(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);    
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-	drawSprite(playerSprite, 0, 0, player.width, player.height, 0, 0, player.width, player.height)
+	drawSprite(playerSprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
 	requestAnimationFrame(animate);
 }
- animate(); 
+ animate();
+
+ window.addEventListener("keydown", function(e){
+	 //Классное назначение ключа - потому что удобно проверять через if потом ключи
+	 //ArrowUp, ArrowLeft
+	 keys[e.key] = true;
+ });
+ window.addEventListener("keyup", function(e){
+	 delete keys[e.key];
+ });
+
+ /**
+  * Двигаем персонаж
+  */
+ function movePlayer() { 
+	 if(keys["ArrowUp"] && player.y > 100 ){
+		 player.y -= player.speed;
+	 }
+  }
