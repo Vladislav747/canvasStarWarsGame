@@ -9,7 +9,7 @@ const player = {
 	x: 200,
 	y: 200,
 	width: 38, // to be calculated
-	height: 50, // to be calculated
+	height: 48, // to be calculated
 	frameX: 0,
 	frameY: 0,
 	speed: 9, // Скорость движения
@@ -30,6 +30,7 @@ function animate(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);    
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 	drawSprite(playerSprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
+	movePlayer();
 	requestAnimationFrame(animate);
 }
  animate();
@@ -49,5 +50,20 @@ function animate(){
  function movePlayer() { 
 	 if(keys["ArrowUp"] && player.y > 100 ){
 		 player.y -= player.speed;
+		 player.frameY = 3;
 	 }
+	 if(keys["ArrowDown"] && player.y< 430){
+		player.y += player.speed;
+		player.frameY = 0;
+	}
+
+	if(keys["ArrowRight"] && player.x< 730){
+		player.x += player.speed;
+		player.frameY = 2;
+	}
+
+	if(keys["ArrowLeft"] && player.x> 100){
+		player.x -= player.speed;
+		player.frameY = 1;
+	}
   }
